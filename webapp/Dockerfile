@@ -1,6 +1,9 @@
 FROM alpine/git as clone
 WORKDIR /app
-RUN git clone https://github.com/SamiaNa/computer-database.git
+RUN git clone https://github.com/SamiaNa/computer-database.git &&\
+	cd computer-database &&\
+	git checkout testDocker &&\
+	cd ..
  
 FROM maven:3.3.9 as build
 WORKDIR app/
