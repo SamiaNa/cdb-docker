@@ -13,11 +13,7 @@ NORMAL="\033[0m"
 BOLD="\033[1m"
 
 
-function print_usage {
-	echo -e "${RED}${BOLD}"
-	echo "Error : Hello you ! no arguments provided, you can choose between build and run"
-	echo -e "${NORMAL}"
-}
+
 
 function build {
 	echo -e "${BLUE}${BOLD}"
@@ -42,28 +38,8 @@ function build {
 	echo -e "${NORMAL}"
 }
 
-function run {
-	echo "Creating network"
-	docker network create cdb-net
-	echo "Building cdbdb"
-	docker run -d --name cdbdb --network cdb-net cdbdb
-	echo "Building cdbapp"
-	docker run --name cdbapp --network cdb-net -p 8080:8080 cdbapp
-}
 
 
-
-case "$1" in	        
-	"build")
-		build
-	;;
-	"run")
-		run	
-	;;
-
-	*)
-		print_usage
-	;;
-esac
+build 
 
 
